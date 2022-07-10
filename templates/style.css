@@ -1,0 +1,99 @@
+html, body {
+    margin: 0;
+    color: white;
+    background-color: #444;
+}
+
+h1 {
+    font-size: 21pt;
+}
+
+.timeline-container {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    max-width: 515px;
+    margin: auto;
+}
+
+.timeline {
+    position: relative;
+    margin-left: 1.5em;
+    min-height: 100vh;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin-left: -0.25em;
+    background-color: {{ colors.line }};
+}
+
+.card-holder {
+    padding: 20px 0;
+}
+
+.card, h1, footer, .hidden-msg {
+    margin-left: 1em;
+    position: relative;
+}
+
+.card {
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+    margin: 1em;
+    padding: 1em;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 1em;
+    left: calc(-2em + 5px);
+    background-color: white;
+    border-radius: 100%;
+    color: white;
+    z-index: 1;
+    border: 3px solid {{ colors.circle }};
+    box-shadow: 0px 0px 5px {{ colors.circle_shadow }};
+}
+
+.card > h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.hidden-msg {
+    background-color: #444;
+    color: #444;
+}
+
+.card > .date {
+    color: gray;
+    font-size: small;
+    margin-top: 0.5em;
+}
+
+iframe {
+    border-width: 0;
+}
+
+.video {
+    aspect-ratio: 16/9;
+    width: 100%;
+}
+
+footer, footer a:link, footer a:visited {
+    color: lightgray;
+}
+
+.passive-load-content::after {
+    content: 'Display Content';
+}

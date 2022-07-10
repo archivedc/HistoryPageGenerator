@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="{{ i_lang }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ i_title }}</title>
+
+    <meta property="og:url" content="{{ i_baseurl }}{{ i_path }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ i_title }}">
+
+    <meta property="twitter:domain" content="{{ gconf.location.domain }}">
+    <meta property="twitter:url" content="{{ i_baseurl }}{{ i_path }}">
+    <meta name="twitter:title" content="{{ i_title }}">
+
+    {% if gconf.icon %}
+    <link rel="icon" href="{{ gconf.icon }}">
+    {% endif %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="card-holder">
+                <h1>{{ i_title }}</h1>
+
+                {% for i in history %}
+                <div class="card">
+                    <h3>{{ i.i_title }}</h3>
+                    {% for e in i.embed %}
+                    <div class="embed">
+                        {% if e.type == 'ragtag-archive' %}
+                        <button class="video passive-load-content"
+                            data-url="https://archive.ragtag.moe/embed/{{ e.id }}"></button>
+                        {% elif e.type == 'youtube' %}
+                        <button class="video passive-load-content"
+                            data-url="https://www.youtube.com/embed/{{ e.id }}"></button>
+                        {% elif e.type == 'tweet' %}
+                        {{ e.i_html }}
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        {% elif e.type == 'spotify' %}
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/{{ e.id }}" width="100%"
+                            height="80" frameBorder="0" allowfullscreen=""
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <div class="date">{{ i.date }}</div>
+                </div>
+                {% endfor %}
+
+                <footer>
+                    {{ settings.footer }}
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
